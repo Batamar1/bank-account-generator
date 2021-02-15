@@ -1,5 +1,11 @@
 server:
   port: 8081
 spring:
+  application:
+    name: bank-account-generator
   main:
     n: 5
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true

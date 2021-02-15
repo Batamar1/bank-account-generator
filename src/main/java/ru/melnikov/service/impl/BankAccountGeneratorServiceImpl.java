@@ -1,5 +1,6 @@
 package ru.melnikov.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Slf4j
 public class BankAccountGeneratorServiceImpl implements BankAccountGeneratorService {
     private final List<String> manNames;
     private final List<String> manPatronymics;
@@ -45,6 +47,7 @@ public class BankAccountGeneratorServiceImpl implements BankAccountGeneratorServ
         for(int i = 0; i < count; i++){
             bankAccounts.add(random.nextInt(2) == 0? generateManBankAccount() : generateWomanBankAccount());
         }
+        log.info("BankAccountGeneratorService.generate count = {}, return bankAccounts = {}", count, bankAccounts);
         return bankAccounts;
     }
 

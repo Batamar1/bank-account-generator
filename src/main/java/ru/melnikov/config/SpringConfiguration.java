@@ -1,5 +1,6 @@
 package ru.melnikov.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@Slf4j
 public class SpringConfiguration {
 
     @Bean(name = "manNames")
@@ -47,6 +49,7 @@ public class SpringConfiguration {
 
 
     private List<String> readFile(String uri){
+        log.info("SpringConfiguration.readFile uri = {}", uri);
         Path path = Paths.get("src/main/resources/NamesForBankAccounts/" + uri);
         List<String> read = new ArrayList<>();
         try{

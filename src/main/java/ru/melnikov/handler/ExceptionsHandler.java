@@ -1,5 +1,6 @@
 package ru.melnikov.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -13,12 +14,12 @@ import ru.melnikov.response.Error;
 import ru.melnikov.response.ResponseData;
 
 @ControllerAdvice
+@Slf4j
 class ExceptionsHandler extends ResponseEntityExceptionHandler {
-    private final Logger logger = LoggerFactory.getLogger(ExceptionsHandler.class);
 
     @ExceptionHandler
     protected ResponseEntity<Object> illegalArgumentExceptions(IllegalArgumentException ex, WebRequest request) {
-        logger.error("Uncaught error", ex);
+        log.error("illegalArgumentException", ex);
 
         ResponseData<String> error = new ResponseData<>();
         error.addError(new Error("-1","Server error",ex.getMessage()));
@@ -28,7 +29,7 @@ class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
     protected ResponseEntity<Object> handleUncaughtExceptions(RuntimeException ex, WebRequest request) {
-        logger.error("Uncaught error", ex);
+        log.error("Uncaught error", ex);
 
         ResponseData<String> error = new ResponseData<>();
         error.addError(new Error("-1","Server error","Server error"));

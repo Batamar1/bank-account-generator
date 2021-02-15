@@ -1,6 +1,6 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.5_10-alpine
+FROM adoptopenjdk/openjdk15:jdk-15.0.1_9-alpine
 ADD . /src
 WORKDIR /src
-RUN ./gradle build
 EXPOSE 8080
+RUN ./gradlew build
 ENTRYPOINT ["java","-jar","build/libs/bank-account-generator-1.0-SNAPSHOT.jar"]
